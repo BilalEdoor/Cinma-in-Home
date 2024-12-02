@@ -1,0 +1,24 @@
+/* Media Query for Mobile */
+@media (min-width: 768px) {
+    .burger-menu {
+        position: fixed;
+        top: 20px; /* Adjust the top position as needed */
+        right: 20px; /* Adjust the right position as needed */
+        z-index: 1000; /* Ensure it's always on top */
+    }
+
+    .navbar {
+        display: flex;
+        position: static;
+        height: auto;
+    }
+
+    .navbar ul {
+        display: flex;
+        justify-content: center;
+    }
+
+    .navbar ul li {
+        padding: 20px 30px;
+    }
+}

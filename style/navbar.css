@@ -1,0 +1,53 @@
+.navbar {
+    display: none;
+    position: fixed; /* Fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    overflow-y: auto;
+    padding: 10px 0;
+    z-index: 1000; /*Ensure navbar is above other content*/
+}
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar ul li {
+    padding: 15px;
+    text-align: center;
+}
+.navbar ul li:hover
+{
+  transform: scale(1.2);
+  
+  
+}
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+  /* Show Navbar when Burger Button is Active */
+.navbar.active {
+    display: block;
+}
+
+.logo
+{
+  font-size: 2.2rem;
+  color: #ffffff;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.5s ease;
+  margin-right: 29rem;
+}
+
+
+.logo:hover
+{
+  transform: scale(1.1);
+}
