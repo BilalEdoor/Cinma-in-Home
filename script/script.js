@@ -73,8 +73,7 @@ navLinks.forEach(link => {
       window.scrollTo({
         top: targetSection.offsetTop,
         behavior: 'smooth' ,  
-        
-
+      
 
       });
     }
@@ -135,18 +134,30 @@ window.addEventListener('scroll', () => {
   });
 });
 
-const menuTrigger = document.getElementById('menu-trigger');
+const sections2 = document.querySelectorAll('section');
+const navLinks2 = document.querySelectorAll('nav a');
 
-menuTrigger.addEventListener('click', () => {
-  menu.classList.toggle('open');
-});
+window.addEventListener('scroll', () => {
+  let current = '';
 
-sections.forEach(section => {
-  const sectionTop = section.offsetTop;
-  if (window.pageYOffset >= sectionTop - 60) {
-    current = section.getAttribute('id'); 1 
-    section.classList.add('active-section'); // Add the class to the active section
-  } else {
-    section.classList.remove('active-section'); // Remove the class from inactive sections
-  }
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionBottom = sectionTop + section.offsetHeight;
+    const isSectionInView = window.pageYOffset >= sectionTop && window.pageYOffset < sectionBottom;
+
+    if (isSectionInView) {
+      current = section.getAttribute('id');
+      section.classList.add('active-section');
+
+      // Find the corresponding link and add the 'active' class
+      const link = document.querySelector(`nav a[href="#${current}"]`);
+      link.classList.add('active');
+    } else {
+      section.classList.remove('active-section');
+
+      // Remove the 'active' class from the corresponding link
+      const link = document.querySelector(`nav a[href="#${current}"]`);
+      link.classList.remove('active');
+    }
+  });
 });
