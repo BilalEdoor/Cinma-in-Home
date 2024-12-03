@@ -72,32 +72,34 @@ navLinks.forEach(link => {
     if (targetSection) {
       window.scrollTo({
         top: targetSection.offsetTop,
-        behavior: 'smooth'   
+        behavior: 'smooth' ,  
+        
+
 
       });
     }
   });
 });
 
-window.addEventListener('scroll', () => {
-    let currentSection = '';
-  
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionBottom = sectionTop + section.offsetHeight;
-  
-      if (scrollY >= sectionTop && scrollY <= sectionBottom) {
-        currentSection = section.id;
-      }
+  window.addEventListener('scroll', () => {
+      let currentSection = '';
+    
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+    
+        if (scrollY >= sectionTop && scrollY <= sectionBottom) {
+          currentSection = section.id;
+        }
+      });
+    
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.hash === `#${currentSection}`) {
+          link.classList.add('active');
+        }
+      });
     });
-  
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.hash === `#${currentSection}`) {
-        link.classList.add('active');
-      }
-    });
-  });
 
 
 // Get the burger button and navbar elements
@@ -110,3 +112,41 @@ burgerMenu.addEventListener('click', () => {
 });
 
 
+
+
+const sections1 = document.querySelectorAll('section');
+const navLinks1 = document.querySelectorAll('nav a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+
+  sections1.forEach(section => {
+    const sectionTop = section.offsetTop;
+    if (window.pageYOffset >= sectionTop - 60) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks1.forEach(link => {
+    link.classList.remove('active');
+    if (link.hash === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+});
+
+const menuTrigger = document.getElementById('menu-trigger');
+
+menuTrigger.addEventListener('click', () => {
+  menu.classList.toggle('open');
+});
+
+sections.forEach(section => {
+  const sectionTop = section.offsetTop;
+  if (window.pageYOffset >= sectionTop - 60) {
+    current = section.getAttribute('id'); 1 
+    section.classList.add('active-section'); // Add the class to the active section
+  } else {
+    section.classList.remove('active-section'); // Remove the class from inactive sections
+  }
+});

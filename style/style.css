@@ -196,3 +196,55 @@ section.your-active-class .landing__container::after {
 		           rotate(-360deg);
 	}
 }
+
+@media ((min-width: 768px )and (max-width: 950px)) {
+    .burger-menu {
+        position: fixed;
+        top: 20px; /* Adjust the top position as needed */
+        right: 20px; /* Adjust the right position as needed */
+        z-index: 1000; /* Ensure it's always on top */
+    }
+
+    .navbar {
+        display: flex;
+        position: static;
+        height: auto;
+    }
+
+    .navbar ul {
+        display: flex;
+        justify-content: center;
+    }
+
+    .navbar ul li {
+        padding: 20px 30px;
+    }
+}
+
+
+/* Media query for tablet devices */
+@media (min-width: 768px) and (max-width: 950px) {
+    /* Styles for tablet devices */
+    section {
+      height: 70vh; /* Adjust height as needed */
+      padding: 20px;
+    }
+  
+    /* Styles for elements within sections */
+    section h1 {
+      font-size: 32px; /* Adjust font size */
+    }
+  
+    section p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  
+    /* Other element-specific styles */
+    /* ... */
+  }
+
+  .active-section {
+    background-color: #ad26261a; /* Adjust color and opacity as needed */
+    border-bottom: 2px solid #ccc;
+  }

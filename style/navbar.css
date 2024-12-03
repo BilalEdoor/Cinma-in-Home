@@ -23,8 +23,13 @@
 .navbar ul li:hover
 {
   transform: scale(1.2);
+  background-color: #6d9a56;
   
   
+}
+.active {
+  /* لون الخلفية عند النشاط */
+  background-color: #6d9a56;
 }
 .navbar ul li a {
     color: white;

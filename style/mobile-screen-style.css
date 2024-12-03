@@ -1,5 +1,5 @@
 /* Media Query for Mobile */
-@media (min-width: 768px) {
+@media (min-width: 600px) {
     .burger-menu {
         position: fixed;
         top: 20px; /* Adjust the top position as needed */
@@ -22,3 +22,26 @@
         padding: 20px 30px;
     }
 }
+
+
+/* Media query for tablet devices */
+@media (min-width: 600px) and (max-width: 768px) {
+    /* Styles for tablet devices */
+    section {
+      height: 70vh; /* Adjust height as needed */
+      padding: 20px;
+    }
+  
+    /* Styles for elements within sections */
+    section h1 {
+      font-size: 32px; /* Adjust font size */
+    }
+  
+    section p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  
+    /* Other element-specific styles */
+    /* ... */
+  }
