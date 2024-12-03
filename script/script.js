@@ -111,31 +111,6 @@ burgerMenu.addEventListener('click', () => {
 });
 
 
-
-
-const sections1 = document.querySelectorAll('section');
-const navLinks1 = document.querySelectorAll('nav a');
-
-window.addEventListener('scroll', () => {
-  let current = '';
-
-  sections1.forEach(section => {
-    const sectionTop = section.offsetTop;
-    if (window.pageYOffset >= sectionTop - 60) {
-      current = section.getAttribute('id');
-    }
-  });
-
-  navLinks1.forEach(link => {
-    link.classList.remove('active');
-    if (link.hash === '#' + current) {
-      link.classList.add('active');
-    }
-  });
-});
-
-
-
 const sections2 = document.querySelectorAll('section');
 const navLinks2 = document.querySelectorAll('nav a');
 
