@@ -134,30 +134,37 @@ window.addEventListener('scroll', () => {
   });
 });
 
+
+
 const sections2 = document.querySelectorAll('section');
 const navLinks2 = document.querySelectorAll('nav a');
 
-window.addEventListener('scroll', () => {
-  let current = '';
+// Add click event listener to each link
+navLinks2.forEach(link => {
+  link.addEventListener('click', () => {
+    const targetId = link.getAttribute('href').substring(1);
+    const targetSection = document.getElementById(targetId);
 
+    // Remove active class from all sections
+    sections2.forEach(section => {
+      section.classList.remove('active-section');
+    });
+
+    // Add active class to the target section
+    targetSection.classList.add('active-section');
+  });
+});
+
+// Add scroll event listener
+window.addEventListener('scroll', () => {
   sections.forEach(section => {
     const sectionTop = section.offsetTop;
     const sectionBottom = sectionTop + section.offsetHeight;
-    const isSectionInView = window.pageYOffset >= sectionTop && window.pageYOffset < sectionBottom;
 
-    if (isSectionInView) {
-      current = section.getAttribute('id');
+    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionBottom) {
       section.classList.add('active-section');
-
-      // Find the corresponding link and add the 'active' class
-      const link = document.querySelector(`nav a[href="#${current}"]`);
-      link.classList.add('active');
     } else {
       section.classList.remove('active-section');
-
-      // Remove the 'active' class from the corresponding link
-      const link = document.querySelector(`nav a[href="#${current}"]`);
-      link.classList.remove('active');
     }
   });
 });
