@@ -128,18 +128,31 @@ navbarItems.forEach(item => {
     }
   });
 });
-// Add click event listener to each list item
-navbarItems.forEach(item => {
-  item.addEventListener('click', function() {
-    // Remove 'active' class from all items
-    navbarItems.forEach(nav => nav.classList.remove('active'));
-    
-    // Add 'active' class to the clicked item
-    item.classList.add('active');
-  });
-});
 
 // update active section as you scroll
 window.addEventListener('scroll', setActiveSection);
 
+
+    //add highlight on navbar li when i scrolled using mouse
+    document.addEventListener("scroll", () => {
+      const sections = document.querySelectorAll("section");
+      const navLinks = document.querySelectorAll("nav ul li");
+
+      let currentSection = "";
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop - sectionHeight / 3) {
+          currentSection = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach((li) => {
+        li.classList.remove("active");
+        if (li.querySelector("a").getAttribute("href").substring(1) === currentSection) {
+          li.classList.add("active");
+        }
+      });
+    });
 
