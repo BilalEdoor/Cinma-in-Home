@@ -56,3 +56,8 @@
 {
   transform: scale(1.1);
 }
+
+.navbar li.active {
+  background-color: #4CAF50;
+  color: white;
+}

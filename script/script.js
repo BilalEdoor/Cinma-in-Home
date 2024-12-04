@@ -41,8 +41,6 @@ const navItems = [
     navItem.appendChild(navlink);
 }
 
- 
-
 const sections = document.querySelectorAll('section');
 
 // Loop through each section and add the h1 and p tags
@@ -80,8 +78,6 @@ navLinks.forEach(link => {
 });
 
 
-
-
 // Get the burger button and navbar elements
 const burgerMenu = document.getElementById('burger-menu');
 const navbar = document.querySelector('.navbar');
@@ -92,37 +88,58 @@ burgerMenu.addEventListener('click', () => {
 });
 
 
-const sections2 = document.querySelectorAll('section');
-const navLinks2 = document.querySelectorAll('nav a');
 
+// Function to set active section and navbar item
+function setActiveSection() {
+  let currentSection = null;
 
-// Add click event listener to each link
-navLinks2.forEach(link => {
-  link.addEventListener('click', () => {
-    const targetId = link.getAttribute('href').substring(1);
-    const targetSection = document.getElementById(targetId);
-
-    // Remove active class from all sections
-    sections2.forEach(section => {
-      section.classList.remove('active-section');
-    });
-
-    // Add active class to the target section
-    targetSection.classList.add('active-section');
-  });
-});
-
-
-// Add scroll event listener
-window.addEventListener('scroll', () => {
+  // Find the section that is currently in the viewport
   sections.forEach(section => {
-    const Top = section.offsetTop;
-    const Bottom = Top + section.offsetHeight;
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+      currentSection = section;
+    }
+  });
 
-    if (window.pageYOffset >= Top && window.pageYOffset <= Bottom) {
-      section.classList.add('active-section');
-    } else {
-      section.classList.remove('active-section');
+  // Remove active class from all sections and navbar items
+  sections.forEach(section => section.classList.remove('active-section'));
+  navbarItems.forEach(item => item.classList.remove('active-section'));
+
+  // Add active class to the current section and corresponding navbar item
+  if (currentSection) {
+    currentSection.classList.add('active-section');
+    const activeNavItem = document.querySelector(`[data-target="${currentSection.id}"]`);
+    if (activeNavItem) {
+      activeNavItem.classList.add('active-section');
+    }
+  }
+}
+// Select all list items
+const navbarItems = document.querySelectorAll('.navbar li');
+// Scroll to the section when a navbar item is clicked
+navbarItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const targetSection = document.getElementById(item.getAttribute('data-target'));
+    if (targetSection) {
+      window.scrollTo({
+        top: targetSection.offsetTop,
+        behavior: 'smooth'
+      });
     }
   });
 });
+// Add click event listener to each list item
+navbarItems.forEach(item => {
+  item.addEventListener('click', function() {
+    // Remove 'active' class from all items
+    navbarItems.forEach(nav => nav.classList.remove('active'));
+    
+    // Add 'active' class to the clicked item
+    item.classList.add('active');
+  });
+});
+
+// update active section as you scroll
+window.addEventListener('scroll', setActiveSection);
+
+
