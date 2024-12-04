@@ -14,10 +14,8 @@ const nav = document.querySelector('nav');
 nav.appendChild(logo);
 
 
-// Create the navigation list
-const navMenuList = document.createElement('ul');
-navMenuList.classList.add('nav_menu_list');
-nav.appendChild(navMenuList)
+// call the navigation list
+const navMenuList = document.querySelector('.nav_menu_list');
 // Create navigation items
 const navItems = [
   { href: '#section1', text: 'Home' },
@@ -28,18 +26,22 @@ const navItems = [
  
 ];
 // set to anu navbar item his info
-navItems.forEach(item => {
-  const li = document.createElement('li');
-  li.classList.add('nav_menu_item');
 
-  const a = document.createElement('a');
-  a.href = item.href;
-  a.textContent = item.text;
-  a.classList.add('nav_menu_link');
-  li.appendChild(a);
+  
 
-  navMenuList.appendChild(li);
-});
+  for (let i = 0; i < navItems.length; i++) {
+    const item = navItems[i];
+    const navItem = document.createElement('li');
+    navItem.classList.add('nav_menu_item');
+    const navlink = document.createElement('a');
+    navlink.classList.add('nav_menu_link');
+    navlink.href = item.href;
+    navlink.textContent = item.text;
+    navMenuList.appendChild(navItem);
+    navItem.appendChild(navlink);
+}
+
+ 
 
 const sections = document.querySelectorAll('section');
 
@@ -57,21 +59,18 @@ sections.forEach((section, index) => {
   container.appendChild(h1);
   container.appendChild(p);
 });
-
-
-const navLinks = document.querySelectorAll('nav a');
-
+ const navLinks = document.querySelectorAll("nav a")
 navLinks.forEach(link => {
   link.addEventListener('click', (event) => {
+     // Prevent default behavior of following the link
     event.preventDefault();   
- // Prevent default behavior of following the link
 
-    const targetId = link.getAttribute('href').substring(1);
-    const targetSection = document.getElementById(targetId);
+    const nextsectioid = link.getAttribute('href').substring(1);
+    const nextsection = document.getElementById(nextsectioid);
 
-    if (targetSection) {
+    if (nextsection) {
       window.scrollTo({
-        top: targetSection.offsetTop,
+        top: nextsection.offsetTop,
         behavior: 'smooth' ,  
       
 
@@ -80,25 +79,7 @@ navLinks.forEach(link => {
   });
 });
 
-  window.addEventListener('scroll', () => {
-      let currentSection = '';
-    
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionBottom = sectionTop + section.offsetHeight;
-    
-        if (scrollY >= sectionTop && scrollY <= sectionBottom) {
-          currentSection = section.id;
-        }
-      });
-    
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.hash === `#${currentSection}`) {
-          link.classList.add('active');
-        }
-      });
-    });
+
 
 
 // Get the burger button and navbar elements
@@ -113,6 +94,7 @@ burgerMenu.addEventListener('click', () => {
 
 const sections2 = document.querySelectorAll('section');
 const navLinks2 = document.querySelectorAll('nav a');
+
 
 // Add click event listener to each link
 navLinks2.forEach(link => {
@@ -130,13 +112,14 @@ navLinks2.forEach(link => {
   });
 });
 
+
 // Add scroll event listener
 window.addEventListener('scroll', () => {
   sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionBottom = sectionTop + section.offsetHeight;
+    const Top = section.offsetTop;
+    const Bottom = Top + section.offsetHeight;
 
-    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionBottom) {
+    if (window.pageYOffset >= Top && window.pageYOffset <= Bottom) {
       section.classList.add('active-section');
     } else {
       section.classList.remove('active-section');
